@@ -16,7 +16,17 @@
 
 ---
 
-### �️ Tech Stack
+### 🔥 Added Enhancements (Extra Features)
+
+- **Manual Playback Console**: Complete VCR-style controls (`Prev`, `Play`, `Next`) for granular algorithm inspection.
+- **Dynamic Logic Logs**: Real-time mathematical trace of the reconstruction formula: `arr[i] = arr[i-1] + diff[i]`.
+- **Cyber-Engineering UI**: A custom-designed industrial terminal aesthetic with blueprint grid and scanner animations.
+- **Hand-Crafted Iconography**: 100% custom SVG icon suite built specifically for this visualizer (no generic libraries).
+- **Sub-array Highlighting**: Visual focus on active indices during the prefix-sum animation.
+
+---
+
+### ️ Tech Stack
 
 - **Core**: Next.js 16 (App Router) + React 19
 - **Style**: Tailwind CSS v4 (Cyber-Engineering Theme)
