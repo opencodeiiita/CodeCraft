@@ -128,7 +128,8 @@ vector<long long> applyUpdates(
 ---
 
 ### 🎥 Interactive Trace
-👉 **[Difference Array Visualizer]()**
+👉 **[Difference Array Visualizer](https://pholio.pearl99z.tech/extensions/differencearray)**
+
 
 
 ---
