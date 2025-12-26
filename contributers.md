@@ -19,5 +19,6 @@
 | Saurav Gitte            | SauravGitte          | IIIT Allahabad                 |
 | Sourish Awasthi         | LooninS              | IIIT Allahabad                 |
 | Saumya Sood             | Marcella2706         | IIIT Allahabad                 |
+| Akshat Parmar           | AkshaTGA             | IIIT Allahabad                 |
 <!-- ADD ABOVE THIS -->
 <!-- example | Korvac | Betty41 | Reyansh College | -->
