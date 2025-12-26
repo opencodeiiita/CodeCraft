@@ -14,6 +14,8 @@ export const useDifferenceArray = (initialSize: number = 6) => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [currentStep, setCurrentStep] = useState<number>(-1); // -1: Not started, 0..size-1: reconstruction steps
+  const [isNaiveMode, setIsNaiveMode] = useState(false);
+  const [selectionRange, setSelectionRange] = useState<{ l: number, r: number } | null>(null);
 
   const diffArray = useMemo(() => {
     const arr = new Array(size).fill(0);
@@ -55,10 +57,12 @@ export const useDifferenceArray = (initialSize: number = 6) => {
 
   const resetAll = () => {
     setUpdates([]);
-    setBaseArray(new Array(size).fill(0));
-    setCurrentStep(-1);
-    setActiveIndex(null);
     setIsAnimating(false);
+    setActiveIndex(null);
+    setCurrentStep(-1);
+    setBaseArray(new Array(size).fill(0));
+    setSelectionRange(null);
+    setIsNaiveMode(false);
   };
 
   const operationsSaved = useMemo(() => {
@@ -126,5 +130,9 @@ export const useDifferenceArray = (initialSize: number = 6) => {
     operationsSaved,
     stepForward,
     stepBackward,
+    isNaiveMode,
+    setIsNaiveMode,
+    selectionRange,
+    setSelectionRange,
   };
 };

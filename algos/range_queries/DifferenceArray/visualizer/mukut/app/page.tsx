@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { useDifferenceArray } from "./hooks/useDifferenceArray";
 import { BlueprintArray } from "./components/BlueprintArray";
 import { ControlPanel } from "./components/ControlPanel";
@@ -27,13 +27,39 @@ export default function DiffArrayVisualizer() {
     stepBackward,
     baseArray,
     setBaseArray,
+    isNaiveMode,
+    setIsNaiveMode,
+    selectionRange,
+    setSelectionRange,
   } = useDifferenceArray();
 
   const [explanation, setExplanation] = useState(
-    "SYSTEM_READY: Waiting for instruction input..."
+    "Terminal Ready. System Online."
   );
 
-  const [customInput, setCustomInput] = useState<string>(baseArray.join(","));
+  const [customInput, setCustomInput] = useState(baseArray.join(","));
+  const [dragStartIdx, setDragStartIdx] = useState<number | null>(null);
+
+  const handleSelectionStart = (idx: number) => {
+    if (idx < 0) return;
+    setDragStartIdx(idx);
+    setSelectionRange({ l: idx, r: idx });
+  };
+
+  const handleSelectionMove = (idx: number) => {
+    if (dragStartIdx === null) return;
+    if (idx < 0) {
+      setDragStartIdx(null);
+      return;
+    }
+    const l = Math.min(dragStartIdx, idx);
+    const r = Math.max(dragStartIdx, idx);
+    setSelectionRange({ l, r });
+  };
+
+  const handleSelectionEnd = () => {
+    setDragStartIdx(null);
+  };
 
   const handleInit = () => {
     const parts = customInput.split(",").map((p) => parseInt(p.trim()));
@@ -52,7 +78,7 @@ export default function DiffArrayVisualizer() {
     setIsAnimating(true);
     setCurrentStep(-1);
 
-    setExplanation("Starting... building the final array now.");
+    setExplanation("Starting Reconstruction Protocol... building final state.");
     await sleep(800);
 
     for (let i = 0; i < size; i++) {
@@ -63,18 +89,55 @@ export default function DiffArrayVisualizer() {
       const prevFinal = i > 0 ? finalArray[i - 1] : 0;
 
       setExplanation(
-        `current_step(${i}): arr[${i}] = arr[${
-          i - 1 < 0 ? "base" : i - 1
-        }] + diff[${i}] => ${prevFinal} + (${diffVal}) = ${finalArray[i]}`
+        `PRE_SUM[${i}] = PRE_SUM[${
+          i - 1 < 0 ? "BASE" : i - 1
+        }] + DIFF[${i}] => ${prevFinal} + (${diffVal}) = ${finalArray[i]}`
       );
 
       await sleep(1000);
     }
 
-    setExplanation("Done! The final array is ready.");
+    setExplanation("Done! Final State Reconstructed and Optimized.");
     setActiveIndex(null);
     setIsAnimating(false);
   };
+
+  const [naiveArray, setNaiveArray] = useState<number[]>([]);
+  const [isNaiveAnimating, setIsNaiveAnimating] = useState(false);
+
+  const runNaiveAnimation = async (l: number, r: number, x: number) => {
+    setIsNaiveAnimating(true);
+    setExplanation(
+      `NAIVE_PROTOCOL: Starting range update [${l}, ${r}] with value ${x}...`
+    );
+    await sleep(500);
+
+    const tempArray = [...(naiveArray.length > 0 ? naiveArray : baseArray)];
+    for (let i = l; i <= r; i++) {
+      setActiveIndex(i);
+      tempArray[i] += x;
+      setNaiveArray([...tempArray]);
+      setExplanation(
+        `INDEX_TOUCHED[${i}]: Increasing value by ${x}. Complexity: O(1) per index.`
+      );
+      await sleep(400);
+    }
+
+    setExplanation(
+      `UPDATE_COMPLETE: Touched ${r - l + 1} indices total. Complexity: O(N).`
+    );
+    setActiveIndex(null);
+    setIsNaiveAnimating(false);
+  };
+
+  useEffect(() => {
+    setNaiveArray([...baseArray]);
+  }, [baseArray]);
+
+  useEffect(() => {
+    window.addEventListener("mouseup", handleSelectionEnd);
+    return () => window.removeEventListener("mouseup", handleSelectionEnd);
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#020617] text-slate-200 font-mono selection:bg-cyan-500/30 overflow-x-hidden relative">
@@ -125,15 +188,30 @@ export default function DiffArrayVisualizer() {
               size={size}
               setSize={setSize}
               updates={updates}
-              addUpdate={addUpdate}
+              addUpdate={(l, r, x) => {
+                const success = addUpdate(l, r, x);
+                if (success) {
+                  setSelectionRange(null);
+                  if (isNaiveMode) {
+                    runNaiveAnimation(l, r, x);
+                  }
+                }
+                return success;
+              }}
               removeUpdate={removeUpdate}
-              resetAll={resetAll}
-              isAnimating={isAnimating}
+              resetAll={() => {
+                resetAll();
+                setNaiveArray([...baseArray]);
+              }}
+              isAnimating={isAnimating || isNaiveAnimating}
               onAnimate={runAnimation}
               operationsSaved={operationsSaved}
               stepForward={stepForward}
               stepBackward={stepBackward}
               playbackIndex={currentStep}
+              isNaiveMode={isNaiveMode}
+              setIsNaiveMode={setIsNaiveMode}
+              selectionRange={selectionRange}
             />
 
             <div className="mt-6 p-6 border border-slate-800 bg-slate-950/50">
@@ -145,8 +223,12 @@ export default function DiffArrayVisualizer() {
                   <span className="text-[9px] text-slate-500 uppercase">
                     Update Complexity
                   </span>
-                  <span className="text-[9px] font-mono text-emerald-400 font-bold">
-                    Θ(1) CONSTANT
+                  <span
+                    className={`text-[9px] font-mono font-bold ${
+                      isNaiveMode ? "text-pink-400" : "text-emerald-400"
+                    }`}
+                  >
+                    {isNaiveMode ? "Θ(N) LINEAR" : "Θ(1) CONSTANT"}
                   </span>
                 </div>
                 <div className="flex justify-between border-b border-slate-800 pb-1">
@@ -218,25 +300,40 @@ export default function DiffArrayVisualizer() {
                 highlightColor="var(--slate-500)"
               />
 
-              <BlueprintArray
-                title="Difference Buffer [diff]"
-                label="BUFFER_A_MARKERS"
-                data={diffArray}
-                activeIndex={activeIndex}
-              />
+              {!isNaiveMode && (
+                <BlueprintArray
+                  title="Difference Buffer [diff]"
+                  label="BUFFER_A_MARKERS"
+                  data={diffArray}
+                  activeIndex={activeIndex}
+                />
+              )}
 
               <BlueprintArray
-                title="Reconstructed State [arr]"
-                label="BUFFER_B_RESULT"
+                title={`Reconstructed State [${
+                  isNaiveMode ? "naive" : "opti"
+                }]`}
+                label={
+                  isNaiveMode
+                    ? "O(N)_UNOPTIMIZED_BUFFER"
+                    : "O(Q+N)_MASTER_BUFFER"
+                }
                 data={
-                  isAnimating
+                  isNaiveMode
+                    ? naiveArray
+                    : isAnimating
                     ? finalArray.map((v, i) =>
                         i <= (currentStep ?? -1) ? v : 0
                       )
                     : finalArray
                 }
                 activeIndex={activeIndex}
-                highlightColor="var(--emerald-primary)"
+                highlightColor={
+                  isNaiveMode ? "var(--pink-500)" : "var(--emerald-primary)"
+                }
+                onSelectionStart={handleSelectionStart}
+                onSelectionMove={handleSelectionMove}
+                selectionRange={selectionRange}
               />
             </div>
 

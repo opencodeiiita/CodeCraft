@@ -22,6 +22,9 @@ interface ControlPanelProps {
   stepForward: () => void;
   stepBackward: () => void;
   playbackIndex: number;
+  isNaiveMode: boolean;
+  setIsNaiveMode: (val: boolean) => void;
+  selectionRange: { l: number; r: number } | null;
 }
 
 export const ControlPanel: React.FC<ControlPanelProps> = ({
@@ -37,11 +40,22 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
   stepForward,
   stepBackward,
   playbackIndex,
+  isNaiveMode,
+  setIsNaiveMode,
+  selectionRange,
 }) => {
   const [newL, setNewL] = useState<number | "">(1);
   const [newR, setNewR] = useState<number | "">(4);
   const [newX, setNewX] = useState<number | "">(3);
   const [tempSize, setTempSize] = useState<number | "">(size);
+
+  // Sync range inputs with selection
+  React.useEffect(() => {
+    if (selectionRange) {
+      setNewL(selectionRange.l);
+      setNewR(selectionRange.r);
+    }
+  }, [selectionRange]);
 
   const handleAdd = () => {
     if (newL === "" || newR === "" || newX === "") {
@@ -82,6 +96,50 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
           <span className="text-[10px] font-mono text-cyan-500/50">
             v1.0-mukut
           </span>
+        </div>
+
+        {/* Simulation Mode Selector */}
+        <div className="bg-slate-950/50 border border-slate-800 p-3 rounded-lg overflow-hidden relative">
+          <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent" />
+          <div className="flex justify-between items-center mb-3">
+            <span className="text-[9px] font-black text-slate-500 uppercase tracking-widest">
+              Protocol_Mode
+            </span>
+            <div
+              className={`w-1.5 h-1.5 rounded-full animate-pulse ${
+                isNaiveMode ? "bg-pink-500" : "bg-emerald-500"
+              }`}
+            />
+          </div>
+
+          <div className="grid grid-cols-2 gap-2">
+            <button
+              onClick={() => setIsNaiveMode(false)}
+              className={`py-2 text-[9px] font-black uppercase transition-all border ${
+                !isNaiveMode
+                  ? "bg-cyan-500/10 border-cyan-500/50 text-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.2)]"
+                  : "bg-slate-950 border-slate-800 text-slate-600 hover:text-slate-400"
+              }`}
+            >
+              Optimized
+            </button>
+            <button
+              onClick={() => setIsNaiveMode(true)}
+              className={`py-2 text-[9px] font-black uppercase transition-all border ${
+                isNaiveMode
+                  ? "bg-pink-500/10 border-pink-500/50 text-pink-400 shadow-[0_0_10px_rgba(236,72,153,0.2)]"
+                  : "bg-slate-950 border-slate-800 text-slate-600 hover:text-slate-400"
+              }`}
+            >
+              Naive
+            </button>
+          </div>
+
+          <p className="text-[8px] mt-2 font-mono text-slate-600 uppercase">
+            {isNaiveMode
+              ? ">> CRITICAL: Linear time complexity (O(N))"
+              : ">> STABLE: Constant time complexity (O(1))"}
+          </p>
         </div>
 
         <div className="space-y-2">

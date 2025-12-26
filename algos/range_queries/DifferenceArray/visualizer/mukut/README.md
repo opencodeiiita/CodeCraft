@@ -18,10 +18,12 @@
 
 ### 🔥 Added Enhancements (Extra Features)
 
+- **Interactive Range Selection**: Drag-and-drop across array cells to dynamically set the update range (`L` to `R`).
+- **Naive vs. Optimized Simulation**: A switchable protocol mode to visually compare O(1) marker updates against O(N) linear updates.
 - **Manual Playback Console**: Complete VCR-style controls (`Prev`, `Play`, `Next`) for granular algorithm inspection.
 - **Dynamic Logic Logs**: Real-time mathematical trace of the reconstruction formula: `arr[i] = arr[i-1] + diff[i]`.
 - **Cyber-Engineering UI**: A custom-designed industrial terminal aesthetic with blueprint grid and scanner animations.
-- **Hand-Crafted Iconography**: 100% custom SVG icon suite built specifically for this visualizer (no generic libraries).
+- **Hand-Crafted Iconography**: 100% custom SVG icon suite built specifically for this visualizer.
 - **Sub-array Highlighting**: Visual focus on active indices during the prefix-sum animation.
 
 ---
