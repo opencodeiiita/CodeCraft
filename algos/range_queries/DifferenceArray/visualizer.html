@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Difference Array Visualizer</title>
+    <style>
+      :root {
+        --bg-color: #0d1117;
+        --card-bg: #161b22;
+        --text-primary: #c9d1d9;
+        --text-secondary: #8b949e;
+        --accent-color: #58a6ff;
+        --success-color: #238636;
+        --danger-color: #da3633;
+        --border-color: #30363d;
+        --cell-bg: #21262d;
+        --highlight-bg: #1f6feb;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+          Arial, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-primary);
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      h1 {
+        margin-bottom: 2rem;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1000px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .controls {
+        background-color: var(--card-bg);
+        padding: 20px;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      label {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+      }
+
+      input {
+        background-color: var(--bg-color);
+        border: 1px solid var(--border-color);
+        color: var(--text-primary);
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 1rem;
+        width: 80px;
+      }
+
+      button {
+        background-color: var(--success-color);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: opacity 0.2s;
+        margin-top: auto;
+      }
+
+      button:hover {
+        opacity: 0.9;
+      }
+      button.secondary {
+        background-color: var(--border-color);
+      }
+
+      .viz-section {
+        background-color: var(--card-bg);
+        padding: 25px;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+        overflow-x: auto;
+      }
+
+      .row-label {
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: var(--accent-color);
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .grid {
+        display: flex;
+        gap: 8px;
+        padding-bottom: 10px;
+      }
+
+      .cell-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 50px;
+      }
+
+      .index {
+        color: var(--text-secondary);
+        font-size: 0.8rem;
+        margin-bottom: 4px;
+      }
+
+      .cell {
+        width: 50px;
+        height: 50px;
+        background-color: var(--cell-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+      }
+
+      .cell.highlight {
+        background-color: var(--highlight-bg);
+        border-color: var(--accent-color);
+        transform: scale(1.1);
+      }
+
+      .cell.changed {
+        animation: pulse 1s;
+      }
+
+      @keyframes pulse {
+        0% {
+          background-color: var(--success-color);
+        }
+        100% {
+          background-color: var(--cell-bg);
+        }
+      }
+
+      .formula {
+        margin-top: 10px;
+        padding: 10px;
+        background-color: rgba(88, 166, 255, 0.1);
+        border: 1px solid var(--accent-color);
+        border-radius: 6px;
+        font-family: monospace;
+        color: var(--accent-color);
+      }
+
+      .logs {
+        background-color: var(--card-bg);
+        padding: 20px;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+        max-height: 200px;
+        overflow-y: auto;
+      }
+
+      .log-item {
+        font-family: monospace;
+        padding: 5px 0;
+        border-bottom: 1px solid var(--border-color);
+        color: var(--text-secondary);
+      }
+      .log-item:last-child {
+        border-bottom: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>CodeCraft 🛠️ Difference Array Visualizer</h1>
+
+    <div class="container">
+      <!-- Setup Controls -->
+      <div class="controls">
+        <div class="input-group">
+          <label>Array Size (N)</label>
+          <input type="number" id="arraySize" value="10" min="5" max="20" />
+        </div>
+        <button onclick="initArray()" class="secondary">Reset / Init</button>
+      </div>
+
+      <!-- Operation Controls -->
+      <div class="controls">
+        <div class="input-group">
+          <label>Start Index (L)</label>
+          <input type="number" id="startL" placeholder="0" />
+        </div>
+        <div class="input-group">
+          <label>End Index (R)</label>
+          <input type="number" id="endR" placeholder="0" />
+        </div>
+        <div class="input-group">
+          <label>Value (X)</label>
+          <input type="number" id="valX" placeholder="10" />
+        </div>
+        <button onclick="applyUpdate()">Apply Update</button>
+      </div>
+
+      <!-- Visualizers -->
+      <div class="viz-section">
+        <div class="row-label">
+          <span>Difference Array (D)</span>
+          <span style="font-size: 0.8rem; opacity: 0.7"
+            >D[L] += X, D[R+1] -= X</span
+          >
+        </div>
+        <div class="grid" id="diffGrid"></div>
+      </div>
+
+      <div class="viz-section">
+        <div class="row-label">
+          <span>Reconstructed Array (Prefix Sum)</span>
+          <span style="font-size: 0.8rem; opacity: 0.7"
+            >A[i] = A[i-1] + D[i]</span
+          >
+        </div>
+        <div class="grid" id="resultGrid"></div>
+      </div>
+
+      <!-- Logs -->
+      <div class="logs" id="logContainer">
+        <div class="log-item">Ready. Set size and apply updates.</div>
+      </div>
+    </div>
+
+    <script>
+      let N = 10;
+      let diffArray = [];
+      let resultArray = [];
+
+      function initArray() {
+        const sizeInput = document.getElementById("arraySize");
+        N = parseInt(sizeInput.value);
+        if (isNaN(N) || N < 2) N = 10;
+
+        // Diff array needs to be N+1 to handle the R+1 edge case safely visually
+        diffArray = new Array(N + 1).fill(0);
+        resultArray = new Array(N).fill(0);
+
+        renderGrids();
+        log(`Initialized array of size ${N}`);
+      }
+
+      function renderGrids() {
+        const diffContainer = document.getElementById("diffGrid");
+        const resContainer = document.getElementById("resultGrid");
+        diffContainer.innerHTML = "";
+        resContainer.innerHTML = "";
+
+        // Render Diff Array
+        for (let i = 0; i <= N; i++) {
+          diffContainer.appendChild(createCell(i, diffArray[i], "diff"));
+        }
+
+        // Render Result Array
+        // Recompute prefix sum first
+        let currentSum = 0;
+        for (let i = 0; i < N; i++) {
+          currentSum += diffArray[i];
+          resultArray[i] = currentSum;
+          resContainer.appendChild(createCell(i, resultArray[i], "res"));
+        }
+      }
+
+      function createCell(index, value, type) {
+        const wrapper = document.createElement("div");
+        wrapper.className = "cell-wrapper";
+
+        const idx = document.createElement("div");
+        idx.className = "index";
+        idx.innerText = index;
+
+        const box = document.createElement("div");
+        box.className = `cell ${type}-cell-${index}`;
+        box.innerText = value;
+
+        wrapper.appendChild(idx);
+        wrapper.appendChild(box);
+        return wrapper;
+      }
+
+      function applyUpdate() {
+        const l = parseInt(document.getElementById("startL").value);
+        const r = parseInt(document.getElementById("endR").value);
+        const x = parseInt(document.getElementById("valX").value);
+
+        if (isNaN(l) || isNaN(r) || isNaN(x)) {
+          alert("Please enter valid numbers");
+          return;
+        }
+        if (l < 0 || r >= N || l > r) {
+          alert(`Invalid Range! Ensure 0 <= L <= R < ${N}`);
+          return;
+        }
+
+        // Logic
+        diffArray[l] += x;
+        if (r + 1 <= N) {
+          diffArray[r + 1] -= x;
+        }
+
+        log(
+          `Update(L=${l}, R=${r}, X=${x}) → D[${l}]+=${x}, D[${r + 1}]-=${x}`
+        );
+
+        renderGrids();
+
+        // Animate Changes
+        highlightCell(`diff-cell-${l}`);
+        if (r + 1 <= N) {
+          highlightCell(`diff-cell-${r + 1}`);
+        }
+      }
+
+      function highlightCell(className) {
+        const el = document.getElementsByClassName(className)[0];
+        if (el) {
+          el.classList.add("changed");
+          setTimeout(() => el.classList.remove("changed"), 1000);
+        }
+      }
+
+      function log(msg) {
+        const container = document.getElementById("logContainer");
+        const div = document.createElement("div");
+        div.className = "log-item";
+        div.innerText = `> ${msg}`;
+        container.prepend(div);
+      }
+
+      // Init on load
+      window.onload = initArray;
+    </script>
+  </body>
+</html>
