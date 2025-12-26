@@ -6,7 +6,7 @@
 | Prashant Kumar Dwivedi | dwivediprashant     | LNCT Bhopal                                               |
 | Harshvardhan           | HARSH4885-svg       | IIIT Allahabad                                            |
 | Pradip Maity           | codeboy-pro         | Haldia Institute Of Technology                            |
-| adityashirsatrao007    | adityashirsatrao007 | N. K. Orchid College Of Engineering & Technology, Solapur |
+| Aditya Shirsatrao      | adityashirsatrao007 | N. K. Orchid College Of Engineering & Technology, Solapur |
 
 <!-- ADD ABOVE THIS -->
 <!-- example | Korvac | Betty41 | Reyansh College | -->
