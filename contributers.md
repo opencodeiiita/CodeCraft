@@ -1,7 +1,7 @@
 | Name| Github-ID  | College name |    
 |:-------------|:------------|:-----------|
 
-| Suyash | Skr-suyash   | IIIT Allahabad   | IIT2024169 |
+| Asra Tabassum | Tabassumasra05  | IIIT Allahabad   | IIT2025063 |
 
 <!-- ADD ABOVE THIS-->
 <!--example |Korvac | Betty41 |Reyansh College| IIT2024067|>
