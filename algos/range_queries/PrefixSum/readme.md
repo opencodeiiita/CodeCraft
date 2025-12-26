@@ -106,7 +106,7 @@ long long rangeSum(const vector<long long>& prefix, int L, int R) {
 *Manual Verification:* `3 + 5 + (-2) + 4 = 10`. ✅
 
 ### 🎥 Interactive Trace
-To see this accumulation and subtraction logic in action with custom data, use the interactive tool:
+ To see this accumulation and subtraction logic in action withcustom data, use the interactive tool:
 👉 **[Prefix Sum Visualizer](https://pholio.pearl99z.tech/extensions/prefixsum)**
 
 ---
