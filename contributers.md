@@ -52,6 +52,7 @@
 | Ansh Patel             | ansh54052           | IIIT Allahabad                  |
 | Sahil                   |Sahil-git005          | IIIT Allahabad               |
 | Naman Pal              | Naman2251              | IIIT Allahabad                |
+| Aditya Pratap Singh              | adityas-28              | JIIT Noida                |
 <!-- ADD ABOVE THIS -->
 <!-- example | Korvac | Betty41 | Reyansh College | -->
 
