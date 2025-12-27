@@ -4,6 +4,9 @@ Given an array nums. We define a running sum of an array as runningSum[i] = sum(
 
 Return the running sum of nums.
 
+Time: O(n)
+Space: O(1) - No auxilary space
+
 */
 
 #include <bits/stdc++.h>
