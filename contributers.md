@@ -52,6 +52,6 @@
 | Ansh Patel             | ansh54052           | IIIT Allahabad                  |
 | Sahil                   |Sahil-git005          | IIIT Allahabad               |
 | Naman Pal              | Naman2251              | IIIT Allahabad                |
+| Himanshu Vitthalani     | Himanshu-1903          | IIIT Allahabad
 <!-- ADD ABOVE THIS -->
 <!-- example | Korvac | Betty41 | Reyansh College | -->
-
