@@ -3,50 +3,55 @@ Problem: 209. Minimum Size Subarray Sum
 Link: https://leetcode.com/problems/minimum-size-subarray-sum/
 
 Approach:
-We use the Sliding Window technique to find the smallest subarray
-whose sum is greater than or equal to the target value.
+We use Prefix Sum combined with Binary Search.
 
-The window is expanded by moving the right pointer and adding elements
-to the current sum. Once the sum becomes >= target, we shrink the window
-from the left to minimize its size while maintaining the condition.
+Since all elements in the array are positive, the prefix sum array
+is strictly increasing. For each starting index, we binary search
+the minimum ending index such that the subarray sum is >= target.
 
 Algorithm:
-1. Initialize two pointers: left and right at index 0.
-2. Add nums[right] to the current sum and move right forward.
-3. When current sum >= target:
-   - Update the minimum subarray length.
-   - Subtract nums[left] from sum and move left forward to shrink window.
-4. Continue until the right pointer reaches the end of the array.
-5. If no valid subarray is found, return 0.
+1. Build a prefix sum array where prefix[i] stores sum of first i elements.
+2. For each index i:
+   - Compute requiredSum = target + prefix[i].
+   - Binary search the prefix array to find the smallest index j
+     such that prefix[j] >= requiredSum.
+3. Update the minimum subarray length using (j - i).
+4. If no valid subarray is found, return 0.
 
 Time Complexity:
-- O(n), where n is the number of elements in the array.
-  Each element is processed at most twice.
+- O(n log n), due to binary search for each index.
 
 Space Complexity:
-- O(1), as only constant extra space is used.
+- O(n), for the prefix sum array.
 */
 
 #include <vector>
 #include <climits>
+#include <algorithm>
 
 using namespace std;
 
 class Solution {
 public:
     int minSubArrayLen(int target, vector<int>& nums) {
-        int left = 0;
-        int currentSum = 0;
+        int n = nums.size();
+        vector<int> prefixSum(n + 1, 0);
+
+        // Build prefix sum array
+        for (int i = 0; i < n; i++) {
+            prefixSum[i + 1] = prefixSum[i] + nums[i];
+        }
+
         int minLength = INT_MAX;
 
-        for (int right = 0; right < nums.size(); right++) {
-            currentSum += nums[right];
+        // Binary search for each starting index
+        for (int i = 0; i < n; i++) {
+            int requiredSum = target + prefixSum[i];
+            auto it = lower_bound(prefixSum.begin(), prefixSum.end(), requiredSum);
 
-            // Shrink the window as long as the condition is satisfied
-            while (currentSum >= target) {
-                minLength = min(minLength, right - left + 1);
-                currentSum -= nums[left];
-                left++;
+            if (it != prefixSum.end()) {
+                int j = it - prefixSum.begin();
+                minLength = min(minLength, j - i);
             }
         }
 
