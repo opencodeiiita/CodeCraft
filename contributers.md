@@ -52,6 +52,8 @@
 | Ansh Patel             | ansh54052           | IIIT Allahabad                  |
 | Sahil                   |Sahil-git005          | IIIT Allahabad               |
 | Naman Pal              | Naman2251              | IIIT Allahabad                |
+| Ashutosh Kesarwani     | Lucifer-0612           | HIT Haldia                    |
+
 <!-- ADD ABOVE THIS -->
 <!-- example | Korvac | Betty41 | Reyansh College | -->
 
