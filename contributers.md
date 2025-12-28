@@ -39,6 +39,7 @@
 | Atharva Mehta          | Atharva-insane      | IIIT Allahabad                 |
 | Manisha katariya       | chanchukatariya5     | IIIT Allahabad                 |
 | Kamakshi Gupta          | 29kamakshigupta      | IIIT Allahabad                 |
+| Lakshmish S G          | Coldesy          | IIIT Allahabad                 |
 | Siddhant Shekhar        | sshekhar563          | United University              |
 | Paarth Arora            |iit2025280-sys        | IIIT Allahabad                 |
 | Ibrahim Raza Beg        | PHOX-9               | IIIT Allahabad                 |
