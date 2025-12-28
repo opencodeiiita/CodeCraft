@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Binary Search Visualization
 
-## Getting Started
+An interactive visualization tool for understanding the Binary Search algorithm with step-by-step execution and real-time visualization.
 
-First, run the development server:
+## Features
+
+- **Interactive Array Visualization**: Watch the binary search algorithm work in real-time on a sorted array
+- **Step-by-Step Execution**: Control the algorithm step-by-step to understand each phase of the search
+- **Customizable Input**: Modify the input array and target value to experiment with different scenarios
+- **Auto Play**: Run the algorithm automatically to see the complete search process
+- **Algorithm Explanation**: Learn how binary search works with detailed explanations
+- **Time Complexity**: Displays O(log n) search computation
+
+## How to Use
+
+### Getting Started
+
+First, install dependencies and run the development server:
 
 ```bash
+npm install
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the visualization.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Using the Visualizer
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Control Panel** (Right side):
+   - Enter a custom array or use the default sorted array [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+   - Set the target value you want to search for
+   - Use step controls to move through the algorithm execution
+   - Click "Auto Play" to watch the algorithm run automatically
 
-## Learn More
+2. **Array Visualizer** (Left side):
+   - Visual representation of the array
+   - Highlights showing the current search range
+   - Current middle element being compared
+   - Target element position when found
 
-To learn more about Next.js, take a look at the following resources:
+3. **Algorithm Explanation**:
+   - Detailed explanation of how binary search works
+   - Understanding of the divide-and-conquer approach
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Components
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **BS.tsx**: Main component managing state and layout
+- **ArrayVisualizer**: Displays the array and algorithm progress
+- **ControlPanel**: Handles user input and algorithm controls
+- **AlgorithmExplanation**: Shows how binary search works
 
-## Deploy on Vercel
+## Project Setup
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This is a [Next.js](https://nextjs.org) project with TypeScript, Tailwind CSS, and ESLint configured.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Available Scripts
+
+```bash
+# Development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
+
+# Run linter
+npm run lint
+```
+
+## Technologies Used
+
+- **Next.js 15**: React framework for building the UI
+- **TypeScript**: Type-safe JavaScript
+- **Tailwind CSS**: Utility-first CSS framework
+- **React Hooks**: For state management
+
+## Learning Resources
+
+- [Binary Search Algorithm Guide](https://en.wikipedia.org/wiki/Binary_search_algorithm)
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+
+---
+
+Created as part of the CodeCraft project to help visualize and understand fundamental computer science algorithms.
