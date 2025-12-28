@@ -60,6 +60,7 @@
 
 | Apoorv Mittal              | Apoorv012              | JIIT Noida                |
 | Chauhan Devan            | Devan019              | DDIT nadiad                |
+| Kushagra Raghuvanshi    | Taskmaster-afk         | IIIT Allahabad             |
 <!-- ADD ABOVE THIS -->
 <!-- example | Korvac | Betty41 | Reyansh College | -->
 
