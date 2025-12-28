@@ -55,3 +55,14 @@
 <!-- ADD ABOVE THIS -->
 <!-- example | Korvac | Betty41 | Reyansh College | -->
 
+
+## Coding Standards
+- Use consistent indentation (4 spaces recommended)
+- Use meaningful variable and function names
+- Comment your code where necessary
+- Follow the existing project structure
+
+## Branching
+- Always create a new branch for each issue or feature:
+
+
