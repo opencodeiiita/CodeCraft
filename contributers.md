@@ -39,6 +39,7 @@
 | Atharva Mehta          | Atharva-insane      | IIIT Allahabad                 |
 | Manisha katariya       | chanchukatariya5     | IIIT Allahabad                 |
 | Kamakshi Gupta          | 29kamakshigupta      | IIIT Allahabad                 |
+| Lakshmish S G          | Coldesy          | IIIT Allahabad                 |
 | Siddhant Shekhar        | sshekhar563          | United University              |
 | Paarth Arora            |iit2025280-sys        | IIIT Allahabad                 |
 | Ibrahim Raza Beg        | PHOX-9               | IIIT Allahabad                 |
@@ -52,6 +53,19 @@
 | Ansh Patel             | ansh54052           | IIIT Allahabad                  |
 | Sahil                   |Sahil-git005          | IIIT Allahabad               |
 | Naman Pal              | Naman2251              | IIIT Allahabad                |
+| Aman Kumar Mehta       | AmanMehta22           | Amity University Jharkhand
+| Adarsh Yadav           | adrsh2808-creator      | IIIT Allahabad                |
+|Priyanshi Giri           | hellopaintinghi-cmd    |IIIT Allahabad               |
+| Sudhanshu              | sahsudhanshu        | IIIT Allahabad                 |
+| Ankit Pal              | icyfire8               | IIIT Allahabad |
+| Aditya Pratap Singh              | adityas-28              | JIIT Noida                |
+| Yuvaraj Ragothaman     | LevelSilence           | IIIT Allahabad                |
+| Riya Ghoshi            | riya-ctrl376           | IIIT Allahabad                |
+| Vrajkumar Shah           | vraj826      | DDU Nadiad                 |
+| Ashutosh Kesarwani     | Lucifer-0612           | HIT Haldia                    |
+
+| Apoorv Mittal              | Apoorv012              | JIIT Noida                |
+| Chauhan Devan            | Devan019              | DDIT nadiad                |
 <!-- ADD ABOVE THIS -->
 <!-- example | Korvac | Betty41 | Reyansh College | -->
 
