@@ -178,9 +178,9 @@ Large values and many updates can overflow 32-bit integers.
 
 | # | Problem | Difficulty |
 |---|--------|------------|
-| 1 | [Problem 1]() | Easy |
-| 2 | [Problem 2]() | Medium |
-| 3 | [Problem 3]() | Medium |
+| 1 | [Problem 1](https://cses.fi/problemset/task/1651/) | Easy |
+| 2 | [Problem 2](https://leetcode.com/problems/corporate-flight-bookings/) | Medium |
+| 3 | [Problem 3](https://leetcode.com/problems/car-pooling/) | Medium |
 | 4 | [Problem 4]() | Hard |
 
 ---
