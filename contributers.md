@@ -63,6 +63,7 @@
 | Riya Ghoshi            | riya-ctrl376           | IIIT Allahabad                |
 | Vrajkumar Shah           | vraj826      | DDU Nadiad                 |
 | Ashutosh Kesarwani     | Lucifer-0612           | HIT Haldia                    |
+| Krish Verma             | The-KrishVerma           | IIIT Allahabad                  |
 
 | Apoorv Mittal              | Apoorv012              | JIIT Noida                |
 | Chauhan Devan            | Devan019              | DDIT nadiad                |
