@@ -69,6 +69,7 @@
 | Amogh S.                 | MogaS811              | IIIT Allahabad.             |
 | Kushagra Raghuvanshi     | Taskmaster-afk        | IIIT Allahabad             |
 | Aaryan Degama  |  Aaryan-Degama   |  IIIT Allahabad   |
+| Krish Verma  |  The-KrishVerma   |  IIIT Allahabad   |
 <!-- ADD ABOVE THIS -->
 <!-- example | Korvac | Betty41 | Reyansh College | -->
 
