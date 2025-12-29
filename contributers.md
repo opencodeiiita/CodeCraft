@@ -14,6 +14,7 @@
 | Abhishek Tripathi      | Astinel-prime       | IIIT Allahabad                 |
 | Mohan Kumar            | aricthecoder        | IIIT Allahabad                 |
 | Rushal Verma           | Rushalverma         | IIIT allahabad                 |
+| Krish Verma            | The-KrishVerma      | IIIT Allahabad                 |
 | Avaneesh Verma         | avaneeshk2307-wq    | IIIT Allahabad                 |
 | Jatin                  | Jatin-980           | IIIT Allahabad                 |
 | Aditi Guin             | GuinAditi           | KIIT                           |
