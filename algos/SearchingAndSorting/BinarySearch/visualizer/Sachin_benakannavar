@@ -3,22 +3,47 @@
 import { useState } from "react";
 
 export default function Visualizer() {
+  // Sorted array
   const arr = [2, 4, 6, 8, 10];
 
+  // Target value to search
+  const target = 6;
+
+  // Binary search pointers
   const [low, setLow] = useState(0);
   const [high, setHigh] = useState(arr.length - 1);
 
+  // Mid index
   const mid = Math.floor((low + high) / 2);
+
+  // One step of binary search
+  function nextStep() {
+    if (low > high) return; // search finished
+
+    if (arr[mid] === target) {
+      alert("Target Found!");
+    } else if (arr[mid] < target) {
+      setLow(mid + 1);
+    } else {
+      setHigh(mid - 1);
+    }
+  }
 
   return (
     <div>
       <h2>Binary Search Visualizer</h2>
 
       <p><strong>Array:</strong> {arr.join(" ")}</p>
+      <p><strong>Target:</strong> {target}</p>
+
       <p><strong>Low index:</strong> {low}</p>
       <p><strong>High index:</strong> {high}</p>
       <p><strong>Mid index:</strong> {mid}</p>
       <p><strong>Mid value:</strong> {arr[mid]}</p>
+
+      <button onClick={nextStep}>
+        Next Step
+      </button>
     </div>
   );
 }
