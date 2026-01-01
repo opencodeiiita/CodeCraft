@@ -69,6 +69,8 @@
 | Kushagra Raghuvanshi     | Taskmaster-afk        | IIIT Allahabad             |
 | Aaryan Degama  |  Aaryan-Degama   |  IIIT Allahabad   |
 | Advait Mishra  |  Advait2912  |  IIIT Gwalior  |
+| Krishna Sikheriya  |  Krishna200608  |  IIIT Allahabad  |
+
 <!-- ADD ABOVE THIS -->
 <!-- example | Korvac | Betty41 | Reyansh College | -->
 
