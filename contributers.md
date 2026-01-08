@@ -69,6 +69,7 @@
 | Kushagra Raghuvanshi     | Taskmaster-afk        | IIIT Allahabad             |
 | Aaryan Degama  |  Aaryan-Degama   |  IIIT Allahabad   |
 | Advait Mishra  |  Advait2912  |  IIIT Gwalior  |
+| Prajjawal Vaishya | Prajjawal-Vaishya | Amity University Online, Noida |
 <!-- ADD ABOVE THIS -->
 <!-- example | Korvac | Betty41 | Reyansh College | -->
 
