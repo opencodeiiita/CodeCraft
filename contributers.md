@@ -69,6 +69,7 @@
 | Kushagra Raghuvanshi     | Taskmaster-afk        | IIIT Allahabad             |
 | Aaryan Degama  |  Aaryan-Degama   |  IIIT Allahabad   |
 | Advait Mishra  |  Advait2912  |  IIIT Gwalior  |
+| Yogesh M | yogesh4216 | CIT Chennai |
 | Krishna Sikheriya  |  Krishna200608  |  IIIT Allahabad  |
 | Neeru  |  neeru24  |  CT University  |
 
