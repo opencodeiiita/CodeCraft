@@ -69,6 +69,7 @@
 | Kushagra Raghuvanshi     | Taskmaster-afk        | IIIT Allahabad             |
 | Aaryan Degama  |  Aaryan-Degama   |  IIIT Allahabad   |
 | Advait Mishra  |  Advait2912  |  IIIT Gwalior  |
+| Prajjawal Vaishya | Prajjawal-Vaishya | Amity University Online, Noida |
 | Devanshu Chotiya | devanshuwebd | IIT Dhanbad |
 | Yogesh M | yogesh4216 | CIT Chennai |
 | Krishna Sikheriya  |  Krishna200608  |  IIIT Allahabad  |
