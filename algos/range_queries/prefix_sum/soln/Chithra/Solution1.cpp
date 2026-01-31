@@ -4,6 +4,8 @@ using namespace std;
 /*
 Problem: B. Reverse Sort
 
+Submission Link - https://codeforces.com/problemset/submission/1605/360853363
+
 Approach:
 - Let t be the sorted version of s.
 - Collect indices where s[i] != t[i].
